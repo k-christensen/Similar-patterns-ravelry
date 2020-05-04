@@ -1,4 +1,6 @@
-# Similar Patterns function
+# Similar Patterns function 
+## Done in collaboration with [Anaïs Ahmed](https://github.com/ananari)
+You can find her code at [this repo] (https://github.com/ananari/ravelry-rec-backend)
 
 ## You can use this program [here](https://pure-peak-95236.herokuapp.com/)
 
