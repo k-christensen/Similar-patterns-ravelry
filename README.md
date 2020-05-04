@@ -7,4 +7,4 @@ Using the read only ravelry permissions, this function takes an input of a patte
 
 `read_only.py` this contains the read_only permissions
 
-`yarn_id_dict.p` pickle file that contains all yarn weights and ID numbers I've assigned to them based on ascending order (i.e. the smallest weight is 0 and the largest weight is 12)
+`yarn_id_dict.p` pickle file that contains the dictionary that has all yarn weights and ID numbers I've assigned to them based on ascending order (i.e. the smallest weight is 0 and the largest weight is 12)
