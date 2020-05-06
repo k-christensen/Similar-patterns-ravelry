@@ -46,10 +46,12 @@ def attrs_single_pattern(pattern):
     df = df.filter(regex = 'permalink$', axis = 1)
     atrib_dict = df.to_dict(orient='records')[0]
     cat_list = [v for v in atrib_dict.values() if v != 'categories']
-
-    attr_dict = {'yarn_weight':'-'.join(pattern['yarn_weight']['name'].split(' ')),
-    'pattern_attributes': [attr['permalink'] 
-    for attr in pattern['pattern_attributes']],
+    if 'yarn_weight' in pattern.keys():
+        yarn_weight = '-'.join(pattern['yarn_weight']['name'].split(' '))
+    else:
+        yarn_weight = None
+    attr_dict = {'yarn_weight':yarn_weight,
+    'pattern_attributes': [attr['permalink'] for attr in pattern['pattern_attributes']],
     'pattern_categories':cat_list}
     return attr_dict
 
@@ -89,14 +91,16 @@ def fit_and_attr_split(attr_list):
 
 # creates the unique part of the search url
 def unique_search_url_section(attr_dict):
-    yarn_list = create_yarn_list(attr_dict['yarn_weight'])
     attr_and_fit_list = fit_and_attr_split(attr_dict['pattern_attributes'])
     attr_list = attr_and_fit_list[1]
     fit_list = attr_and_fit_list[0]
-    yarn_str = or_string(yarn_list)
     attr_str = or_string(attr_list)
     cat_str = or_string(attr_dict['pattern_categories'][1:])
     fit_str = or_string(fit_list)
+    if attr_dict['yarn_weight'] is not None:
+        yarn_list = create_yarn_list(attr_dict['yarn_weight'])
+        yarn_str = or_string(yarn_list)
+        'weight={}'.format(yarn_str)
     return 'weight={}&pa={}&pc={}&fit={}'.format(yarn_str,attr_str,cat_str, fit_str)
 
 # creates full search url
