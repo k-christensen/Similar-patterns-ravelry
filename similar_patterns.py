@@ -41,11 +41,14 @@ def single_pattern_request(code):
 # output is a dictionary containing 
 # yarn weight, pattern cats, and pattern attrs
 def attrs_single_pattern(pattern):
-    data = pattern['pattern_categories'][0]    
-    df = pd.io.json.json_normalize(data)
-    df = df.filter(regex = 'permalink$', axis = 1)
-    atrib_dict = df.to_dict(orient='records')[0]
-    cat_list = [v for v in atrib_dict.values() if v != 'categories']
+    cat_dict = pattern['pattern_categories'][0]
+    cat_list = [cat_dict['permalink']]
+    new_dict = cat_dict['parent']
+    while 'parent' in new_dict.keys():
+        cat_list.append(new_dict['permalink'])
+        new_dict = new_dict['parent']
+    if len(cat_list)>1:
+        cat_list = cat_list[:2]
     if 'yarn_weight' in pattern.keys():
         yarn_weight = '-'.join(pattern['yarn_weight']['name'].split(' '))
     else:
@@ -147,3 +150,14 @@ print(pattern_url_to_website_search_url(str(url)))
 # https://www.ravelry.com/patterns/search#weight=dk%7Cworsted%7Caran&sort=best&view=captioned_thumbs
 # example pattern url
 # https://www.ravelry.com/patterns/library/nightshift
+
+# example_req = single_pattern_request('wow-2')
+# cat_dict = example_req['pattern_categories'][0]
+# cat_list = [cat_dict['permalink']]
+# new_dict = cat_dict['parent']
+# while 'parent' in new_dict.keys():
+#     cat_list.append(new_dict['permalink'])
+#     new_dict = new_dict['parent']
+# cat_list
+
+
