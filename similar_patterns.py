@@ -108,7 +108,7 @@ def unique_search_url_section(attr_dict):
             url_sect = url_sect + fit_url_sect
         else:
             url_sect = fit_url_sect
-    cat_str = or_string(attr_dict['pattern_categories'][1:])
+    cat_str = or_string(attr_dict['pattern_categories'])
     cat_url_sect = 'pc={}&'.format(cat_str)
     url_sect = url_sect + cat_url_sect
     if attr_dict['yarn_weight'] is not None:
@@ -150,5 +150,4 @@ print(pattern_url_to_website_search_url(str(url)))
 # https://www.ravelry.com/patterns/search#weight=dk%7Cworsted%7Caran&sort=best&view=captioned_thumbs
 # example pattern url
 # https://www.ravelry.com/patterns/library/nightshift
-
 
