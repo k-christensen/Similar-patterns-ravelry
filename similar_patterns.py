@@ -151,13 +151,4 @@ print(pattern_url_to_website_search_url(str(url)))
 # example pattern url
 # https://www.ravelry.com/patterns/library/nightshift
 
-# example_req = single_pattern_request('wow-2')
-# cat_dict = example_req['pattern_categories'][0]
-# cat_list = [cat_dict['permalink']]
-# new_dict = cat_dict['parent']
-# while 'parent' in new_dict.keys():
-#     cat_list.append(new_dict['permalink'])
-#     new_dict = new_dict['parent']
-# cat_list
-
 
